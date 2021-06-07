@@ -1,15 +1,16 @@
 const express = require('express')
 const tags = require('../useCases/tags')
 const router = express.Router()
+router.use(express.json())
 
-router.get('/tags', async (request, response) =>{
+router.get('/', async (request, response) =>{
     try {
-        const tags = await tags.getAll()
+        const tagsToGet = await tags.getAll()
         response.json({
             success : true,
             msg : 'All tags got',
             data: {
-                tags : tags
+                tags : tagsToGet
             }
         })
     } catch (error) {

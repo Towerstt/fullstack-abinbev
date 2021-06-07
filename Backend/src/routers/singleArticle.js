@@ -2,8 +2,11 @@ const express = require('express')
 const articles = require('../useCases/singleArticle')
 const users = require('../useCases/users')
 const comments = require('../useCases/comments')
-const tags = require('../useCases/tags')
+const tagsUC = require('../useCases/tags')
 const router = express.Router()
+const jwt = require('../lib/jwt')
+const {JWT_SECRET} = process.env
+router.use(express.json())
 
 router.get('/', async (request, response) =>{
     try {
@@ -12,6 +15,7 @@ router.get('/', async (request, response) =>{
         const tag = request.query.tag || ''
         const slug = request.query.slug || ''
         let articlesFiltered = ''
+        let allArticles
         if(author){
             articlesFiltered = await articles.getByAuthor(author)
         }
@@ -25,7 +29,7 @@ router.get('/', async (request, response) =>{
             articlesFiltered = await articles.getBySlug(slug)
         }
         else{
-            const allArticles = await articles.getAll()
+            allArticles = await articles.getAll()
         }
         response.json({
             success : true,
@@ -51,7 +55,7 @@ router.get('/feed', async (request, response) => {
             success : true,
             msg : 'Articles got successfully',
             data : {
-                articles : articlesFiltered || allArticles
+                articles : allArticles
             }
         })
     } catch (error) {
@@ -67,14 +71,19 @@ router.get('/feed', async (request, response) => {
 router.post('/', async (request,response) =>{
     try {
         const articleToPost = request.body
+        const slug = request.body.slug
+        const slugAlreadyExists = articles.getBySlug(slug)
+        if(slugAlreadyExists){
+            throw new Error ('You have to select another title for your post')
+        }
         const newArticle = await articles.postNewArticle(articleToPost)
-        const tags = await tags.postTags(articleToPost.tags)
+        const tagsToPost = await tagsUC.postTags(articleToPost.tagList, articleToPost.slug)
         response.json({
             success : true,
             msg : 'Article posted successfully',
             data : {
                 newArticle : newArticle,
-                tags : tags
+                tagsPosted : tagsToPost
             }
         })
     } catch (error) {
@@ -87,7 +96,7 @@ router.post('/', async (request,response) =>{
     }
 })
 
-router.patch('/:slug', async (request, response) =>{
+router.put('/:slug', async (request, response) =>{
     try {
         const slug = request.params.slug
         const newData = request.body
@@ -96,7 +105,7 @@ router.patch('/:slug', async (request, response) =>{
             success : true,
             msg : 'Article updated successfully',
             data : {
-                article : articleUpdated
+                newInfo : request.params.slug
             }
         })
     } catch (error) {
@@ -109,22 +118,24 @@ router.patch('/:slug', async (request, response) =>{
     }
 })
 
-router.patch('/:slug/favourite', async (request, response) =>{
+router.put('/:slug/favorite', async (request, response) =>{
     try {
         const slug = request.params.slug
-        const token = request.header.authorization
-        const isValidToken = jwt.verify(token, JWT_SECRET)
-        if (!isValidToken){
-            throw new Error('Not authorized')
-        }
-        const userFound =await users.getOne(isValidToken.id)
-        const username = userFound.username
+        const token = request.headers.authorization
+        const id = request.headers.id // Aquitar cuando se genere el token y descomentar lo siguiente
+        // const isValidToken = jwt.verify(token, JWT_SECRET)
+        // if (!isValidToken){
+        //     throw new Error("Not authorized")
+        // }
+        // const userFound =await users.getOne(isValidToken.id)
+        const userFound = await users.getOne(id) // A quitar cuando se genere el token
+        const username = userFound[0].username
         const newFav = await articles.favoriteArticle(username, slug)
         response.json({
             success : true,
             msg : 'Favorited successfully',
             data : {
-                Fav : newFav
+                Fav : newFav.favorited
             }
         })
     } catch (error) {
@@ -137,16 +148,18 @@ router.patch('/:slug/favourite', async (request, response) =>{
     }
 })
 
-router.delete('/:slug/favourite', async (request, response) =>{
+router.delete('/:slug/favorite', async (request, response) =>{
     try {
         const slug = request.params.slug
-        const token = request.header.authorization
-        const isValidToken = jwt.verify(token, JWT_SECRET)
-        if (!isValidToken){
-            throw new Error('Not authorized')
-        }
-        const userFound =await users.getOne(isValidToken._id)
-        const username = userFound.username
+        const token = request.headers.authorization
+        const id = request.headers.id //A quitar cuando se genere el token y descomentar lo siguiente
+        // const isValidToken = jwt.verify(token, JWT_SECRET)
+        // if (!isValidToken){
+        //     throw new Error('Not authorized')
+        // }
+        // const userFound =await users.getOne(isValidToken._id)
+        const userFound = await users.getOne(id) // A quitar cuando se genere el token
+        const username = userFound[0].username
         const newFav = await articles.unfavoriteArticle(username, slug)
         response.json({
             success : true,

@@ -1,6 +1,7 @@
 const express = require('express')
 const users = require('../useCases/users')
 const router = express.Router()
+router.use(express.json())
 
 router.post('/', async (request, response) => {
     try {
@@ -51,12 +52,12 @@ router.get('/', async (request, response) => {
         const {
             email
         } = request.body
-        const currentUser = users.currentUser(email)
+        const currentUser = await users.currentUser(email)
         response.json({
             success: true,
             msg: 'Current user set',
             data: {
-                currentUser: currentUser
+                User: currentUser
             }
         })
     } catch (error) {
@@ -69,15 +70,15 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.patch('/:email', async (request, response) => {
+router.put('/:email', async (request, response) => {
     try {
         const email = request.params.email
-        const modifiedUser = user.update(email, request.body)
+        const modifiedUser = users.update(email, request.body)
         response.json({
             success : true,
             msg : 'User updated successfully',
             data : {
-                newUserData : modifiedUser
+                newUserData : 'Changes done'
             }
         })
     } catch (error) {

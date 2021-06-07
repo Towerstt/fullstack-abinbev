@@ -12,3 +12,5 @@ app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
 app.use('/tags', tagsRouter)
 app.use('/profiles', profilesRouter)
+
+module.exports = app

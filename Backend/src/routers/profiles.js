@@ -2,6 +2,7 @@ const express = require('express')
 const profiles = require('../useCases/profiles')
 const users = require('../useCases/users')
 const router = express.Router()
+router.use(express.json())
 
 router.get('/:celeb_username', async (request, response) =>{
     try {

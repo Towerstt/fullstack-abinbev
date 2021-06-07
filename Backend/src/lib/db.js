@@ -15,7 +15,7 @@ function connect() {
     return mongoose.connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: true
+        useFindAndModify: false
     })
 }
 

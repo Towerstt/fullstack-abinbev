@@ -6,12 +6,15 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type : String,
-        match : function() {
-            if(celeb_){
-                [/celeb_[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, 'You have to set a valid email']
-            }else{
-                return [/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, 'You have to set a valid email']
-            }
+        validate : {
+            validator : function() {
+                if(this.celeb_){
+                    return /celeb_[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+                }else{
+                    return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+                }
+            },
+            message : 'You have to set a valid email'
         },
         
         maxLength : 100,
@@ -28,7 +31,7 @@ const userSchema = new mongoose.Schema({
         maxLength : 20,
         function() {
             if(celeb_){
-                [/celeb_\w/, 'You should use only letters and numbers']
+                return [/celeb_\w/, 'You should use only letters and numbers']
             }else{
                 return [/\w/, 'You should use only letters and numbers']
             }

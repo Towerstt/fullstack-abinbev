@@ -4,8 +4,9 @@ async function getAll () {
     return await Tags.find({})
 }
 
-async function postTags (tags) {
-    return tags.forEach(tag => await tags.create(tag));
+function postTags (tags, slug) {
+    console.log(tags)
+    return Tags.create({tags, slug})
 }
 
 module.exports = {

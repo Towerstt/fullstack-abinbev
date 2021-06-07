@@ -25,24 +25,25 @@ const articleSchema = new mongoose.Schema({
     },
     createdAt : {
         type : String,
-        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-2][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
+        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
         required : true
     },
     updatedAt : {
         type : String,
-        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-2][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
+        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
     },
     favorited : {
         type : [String], //Se marcará el nombre del usuario que lo marcó como favorito
-        required : false,
+        required : true,
         default : []
     },
     favoritesCount : {
-        Type : Number,
+        type : Number,
         default : 0,
     },
     author : {
-        required : true
+        default : {},
+        required : false
     }
 })
 

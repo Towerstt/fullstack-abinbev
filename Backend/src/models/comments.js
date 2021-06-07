@@ -18,7 +18,7 @@ const commentsSchema = new mongoose.Schema({
         required : true
     },
     author : {
-        required : true
+        // required : true
     }
 })
 

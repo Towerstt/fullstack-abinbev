@@ -1,5 +1,6 @@
 const Users = require('../models/users')
 const bcrypt = require('../lib/bcrypt')
+const jwt = require('../lib/jwt')
 
 async function register({
     email,
@@ -40,11 +41,12 @@ async function login (email, password) {
 }
 
 async function currentUser (email){
-    return await Users.findOne({email})
+    return await Users.find({email})
 }
 
 async function update (email, newData) {
-    const userToUpdate = await Users.findOneAndUpdate({email}, newData)
+    console.log(email, newData)
+    const userToUpdate = await Users.findOneAndUpdate(email, newData)
 
     if(!userToUpdate){
         throw new Error ('Invalid data')
@@ -53,7 +55,7 @@ async function update (email, newData) {
 }
 
 async function getOne (userID) {
-    return Users.findOne({userID})
+    return Users.find({_id : userID})
 }
 
-module.exports = {register, login, currentUser, update}
+module.exports = {register, login, currentUser, update, getOne}
