@@ -4,7 +4,6 @@ const profileSchema = new mongoose.Schema({
         type : String,
         minLength : 2,
         maxLength : 20,
-        match : [/\w/, 'Use only letters and numbers'],
         required : true
     },
     bio : {

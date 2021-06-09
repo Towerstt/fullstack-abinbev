@@ -11,7 +11,7 @@ async function register({
 }) {
     const userFound = await Users.findOne({
         email
-    })
+    }) 
 
     if (userFound) {
         throw new Error('User already exists')
@@ -36,7 +36,7 @@ async function login (email, password) {
     const isValidPsw = await bcrypt.compare(password, userFound.password)
 
     if (!isValidPsw) throw  new Error ('Invalid data')
-
+    
     return jwt.sign({ id : userFound._id})
 }
 
@@ -58,4 +58,8 @@ async function getOne (userID) {
     return Users.find({_id : userID})
 }
 
-module.exports = {register, login, currentUser, update, getOne}
+async function getUser (username){
+    return Users.find({username})
+}
+
+module.exports = {register, login, currentUser, update, getOne, getUser}

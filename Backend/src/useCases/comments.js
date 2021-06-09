@@ -2,7 +2,7 @@ const Comments = require('../models/comments')
 
 //GET
 async function getAll (slug) { 
-    return await Comments.find({slug})
+    return await Comments.find({article_slug : slug})
 }
 
 //POST

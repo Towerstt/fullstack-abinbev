@@ -12,7 +12,7 @@ router.post('/', async (request, response) => {
             data: {
                 user: newUser
             }
-        })
+        }) 
     } catch (error) {
         response.status(400)
         response.json({

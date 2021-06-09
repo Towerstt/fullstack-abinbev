@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
             },
             message : 'You have to set a valid email'
         },
-        
+         
         maxLength : 100,
         required : true
     },

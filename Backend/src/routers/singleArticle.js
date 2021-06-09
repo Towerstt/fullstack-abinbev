@@ -196,13 +196,13 @@ router.delete('/:slug', async (request, response) =>{
             msg : 'Article could not be deleted',
             error : error.message
         })
-    }
+    } 
 })
 
 router.post('/:slug/comments', async (request, response) =>{
     try {
         const slug = request.params.slug
-        const commentToPost = request.body
+        const commentToPost = {...request.body, article_slug : request.params.slug}
         const commentPosted = await comments.newComment(commentToPost)
         response.json({
             success : true,
