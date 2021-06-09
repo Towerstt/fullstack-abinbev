@@ -7,7 +7,6 @@ const profilesRouter = require('./routers/profiles')
 const app = express()
 
 app.use(cors())
-// app.use(middleware)
 app.use('/users', usersRouter)
 app.use('/articles', articlesRouter)
 app.use('/tags', tagsRouter)

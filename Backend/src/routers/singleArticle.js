@@ -4,11 +4,12 @@ const users = require('../useCases/users')
 const comments = require('../useCases/comments')
 const tagsUC = require('../useCases/tags')
 const router = express.Router()
-const jwt = require('../lib/jwt')
-const {JWT_SECRET} = process.env
+const middleware = require('../middleware/auth')
+router.use(middleware)
 router.use(express.json())
 
 router.get('/', async (request, response) =>{
+    //Endpoint que traer todos los artículos con o sin query
     try {
         const author = request.query.author || ''
         const favorited = request.query.favorited || ''
@@ -50,6 +51,9 @@ router.get('/', async (request, response) =>{
 
 router.get('/feed', async (request, response) => {
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const allArticles = await articles.getAll()
         response.json({
             success : true,
@@ -70,6 +74,9 @@ router.get('/feed', async (request, response) => {
 
 router.post('/', async (request,response) =>{
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const articleToPost = request.body
         const slug = request.body.slug
         const slugAlreadyExists = articles.getBySlug(slug)
@@ -98,6 +105,9 @@ router.post('/', async (request,response) =>{
 
 router.put('/:slug', async (request, response) =>{
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const slug = request.params.slug
         const newData = request.body
         const articleUpdated = await articles.updateArticle(slug, newData)
@@ -121,14 +131,11 @@ router.put('/:slug', async (request, response) =>{
 router.put('/:slug/favorite', async (request, response) =>{
     try {
         const slug = request.params.slug
-        const token = request.headers.authorization
-        const id = request.headers.id // Aquitar cuando se genere el token y descomentar lo siguiente
-        // const isValidToken = jwt.verify(token, JWT_SECRET)
-        // if (!isValidToken){
-        //     throw new Error("Not authorized")
-        // }
-        // const userFound =await users.getOne(isValidToken.id)
-        const userFound = await users.getOne(id) // A quitar cuando se genere el token
+        const isValidToken = request.user
+        if (!isValidToken){
+            throw new Error("Not authorized")
+        }
+        const userFound =await users.getOne(isValidToken.id)
         const username = userFound[0].username
         const newFav = await articles.favoriteArticle(username, slug)
         response.json({
@@ -151,14 +158,11 @@ router.put('/:slug/favorite', async (request, response) =>{
 router.delete('/:slug/favorite', async (request, response) =>{
     try {
         const slug = request.params.slug
-        const token = request.headers.authorization
-        const id = request.headers.id //A quitar cuando se genere el token y descomentar lo siguiente
-        // const isValidToken = jwt.verify(token, JWT_SECRET)
-        // if (!isValidToken){
-        //     throw new Error('Not authorized')
-        // }
-        // const userFound =await users.getOne(isValidToken._id)
-        const userFound = await users.getOne(id) // A quitar cuando se genere el token
+        const isValidToken = request.user
+        if (!isValidToken){
+            throw new Error('Not authorized')
+        }
+        const userFound =await users.getOne(isValidToken._id)
         const username = userFound[0].username
         const newFav = await articles.unfavoriteArticle(username, slug)
         response.json({
@@ -180,6 +184,9 @@ router.delete('/:slug/favorite', async (request, response) =>{
 
 router.delete('/:slug', async (request, response) =>{
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const slug = request.params.slug
         const deletedArticle = await articles.deleteArticle(slug)
         response.json({
@@ -201,6 +208,9 @@ router.delete('/:slug', async (request, response) =>{
 
 router.post('/:slug/comments', async (request, response) =>{
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const slug = request.params.slug
         const commentToPost = {...request.body, article_slug : request.params.slug}
         const commentPosted = await comments.newComment(commentToPost)
@@ -244,6 +254,9 @@ router.get('/:slug/comments', async (request, response) =>{
 
 router.delete('/:slug/comments/:commentId', async (request, response) =>{
     try {
+        if(!request.headers.auth){
+            throw new Error ('You have to login o register')
+        }
         const slug = request.params.slug
         const commentId = request.params.commentId
         const article = articles.getBySlug(slug)

@@ -1,24 +1,24 @@
 const mongoose = require('mongoose')
 const profileSchema = new mongoose.Schema({
-    username : {
-        type : String,
-        minLength : 2,
-        maxLength : 20,
-        required : true
+    username: {
+        type: String,
+        minLength: 2,
+        maxLength: 20,
+        required: true
     },
-    bio : {
-        type : String,
-        minLength : 10,
-        required : true
+    bio: {
+        type: String,
+        minLength: 10,
+        required: true
     },
-    image : {
-        type : String,
-        match : [/^http.:\/\/.*\..*/gm, 'It has to be your image url'],
-        required : true
+    image: {
+        type: String,
+        match: [/^http.:\/\/.*\..*/gm, 'It has to be your image url'],
+        required: true
     },
-    following : {
-        type : [String],
-        default : []
+    following: {
+        type: [String],
+        default: []
     }
 })
 

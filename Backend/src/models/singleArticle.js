@@ -2,48 +2,49 @@ const mongoose = require('mongoose')
 const articleSchema = new mongoose.Schema({
     slug: {
         type: String,
-        required : true
+        required: true
     },
-    title : {
-        type : String,
-        minLength : 10,
-        maxLength : 100,
-        required : true
+    title: {
+        type: String,
+        minLength: 10,
+        maxLength: 100,
+        required: true
     },
-    description : {
-        type : String,
-        minLength : 10,
-        required : true
+    description: {
+        type: String,
+        minLength: 10,
+        required: true
     },
-    body : {
-        type : String,
-        required : true
+    body: {
+        type: String,
+        required: true
     },
-    tagList : {
-        type : [String],
-        required : [true, 'You must select at least one tag']
+    tagList: {
+        type: [String],
+        required: [true, 'You must select at least one tag']
     },
-    createdAt : {
-        type : String,
-        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
-        required : true
+    createdAt: {
+        type: String,
+        //Se debe dar formato toISOString() a la fecha desde el front
+        match: /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
+        required: true
     },
-    updatedAt : {
-        type : String,
-        match : /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
+    updatedAt: {
+        type: String,
+        match: /20[1-2][0-9]-[0-1][0-9]-[0-3][0-9]T[0-9]{2}:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z/gm,
     },
-    favorited : {
-        type : [String], //Se marcará el nombre del usuario que lo marcó como favorito
-        required : true,
-        default : []
+    favorited: {
+        type: [String], //Se marcará el nombre del usuario que lo marcó como favorito
+        required: true,
+        default: []
     },
-    favoritesCount : {
-        type : Number,
-        default : 0,
+    favoritesCount: {
+        type: Number,
+        default: 0,
     },
-    author : {
-        default : {},
-        required : false
+    author: {
+        default: {},
+        required: false
     }
 })
 

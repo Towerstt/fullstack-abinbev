@@ -1,17 +1,16 @@
 const Comments = require('../models/comments')
 
-//GET
-async function getAll (slug) { 
-    return await Comments.find({article_slug : slug})
+async function getAll(slug) {
+    return await Comments.find({
+        article_slug: slug
+    })
 }
 
-//POST
-async function newComment (data) {
+async function newComment(data) {
     return await Comments.create(data)
 }
 
-//DELETE
-async function deleteComment (commentID) {
+async function deleteComment(commentID) {
     return await Comments.findOneAndDelete(commentID)
 }
 

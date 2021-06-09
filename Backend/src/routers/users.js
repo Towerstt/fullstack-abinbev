@@ -1,6 +1,8 @@
 const express = require('express')
 const users = require('../useCases/users')
 const router = express.Router()
+const middleware = require('../middleware/auth')
+router.use(middleware)
 router.use(express.json())
 
 router.post('/', async (request, response) => {
@@ -12,7 +14,7 @@ router.post('/', async (request, response) => {
             data: {
                 user: newUser
             }
-        }) 
+        })
     } catch (error) {
         response.status(400)
         response.json({
@@ -30,6 +32,7 @@ router.post('/login', async (request, response) => {
             password
         } = request.body
         const token = await users.login(email, password)
+        localStorage.setItem('tkn', token)
         response.json({
             success: true,
             msg: 'Logged in',
@@ -49,6 +52,9 @@ router.post('/login', async (request, response) => {
 
 router.get('/', async (request, response) => {
     try {
+        if (!request.headers.auth) {
+            throw new Error('You have to login o register')
+        }
         const {
             email
         } = request.body
@@ -72,21 +78,24 @@ router.get('/', async (request, response) => {
 
 router.put('/:email', async (request, response) => {
     try {
+        if (!request.headers.auth) {
+            throw new Error('You have to login o register')
+        }
         const email = request.params.email
         const modifiedUser = users.update(email, request.body)
         response.json({
-            success : true,
-            msg : 'User updated successfully',
-            data : {
-                newUserData : 'Changes done'
+            success: true,
+            msg: 'User updated successfully',
+            data: {
+                newUserData: 'Changes done'
             }
         })
     } catch (error) {
         response.status(400)
         response.json({
-            success : false,
-            msg : 'Could not update',
-            error : error.message
+            success: false,
+            msg: 'Could not update',
+            error: error.message
         })
 
     }

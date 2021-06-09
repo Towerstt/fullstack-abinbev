@@ -1,56 +1,57 @@
 const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
-    celeb_ : {
-        type : Boolean,
-        default : false
+    celeb_: {
+        type: Boolean,
+        default: false
     },
     email: {
-        type : String,
-        validate : {
-            validator : function() {
-                if(this.celeb_){
+        type: String,
+        validate: {
+            validator: function () {
+                if (this.celeb_) {
+                    // Si marca la casilla "Celebrity" en el front, se agregará el prefijo celeb_ al email y username
                     return /celeb_[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-                }else{
+                } else {
                     return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
                 }
             },
-            message : 'You have to set a valid email'
+            message: 'You have to set a valid email'
         },
-         
-        maxLength : 100,
-        required : true
+
+        maxLength: 100,
+        required: true
     },
-    password : {
-        type : String,
-        minLength : 1,
-        required : true
+    password: {
+        type: String,
+        minLength: 1,
+        required: true
     },
-    username : {
-        type : String,
-        minLength : 2,
-        maxLength : 20,
-        function() {
-            if(celeb_){
+    username: {
+        type: String,
+        minLength: 2,
+        maxLength: 20,
+        function () {
+            if (celeb_) {
                 return [/celeb_\w/, 'You should use only letters and numbers']
-            }else{
+            } else {
                 return [/\w/, 'You should use only letters and numbers']
             }
         },
-        required : true
+        required: true
     },
-    bio : {
-        type : String,
-        minLength : 10,
-        required : true
+    bio: {
+        type: String,
+        minLength: 10,
+        required: true
     },
-    image : {
-        type : String,
-        match : [/^http.:\/\/.*\..*/gm, 'You must set your image url'],
-        required : true
+    image: {
+        type: String,
+        match: [/^http.:\/\/.*\..*/gm, 'You must set your image url'],
+        required: true
     },
-    following : {
-        type : [String],
-        default : []
+    following: {
+        type: [String],
+        default: []
     }
 })
 

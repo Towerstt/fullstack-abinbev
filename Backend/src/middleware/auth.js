@@ -10,10 +10,12 @@ function auth(request, response, next) {
         const isValidToken = jwt.verify(token)
     
         if (!isValidToken) {
+            request.auth = false
             throw new Error('Not Authorized')
         }    
 
         request.user = isValidToken
+        request.headers.auth = true
 
         next()
 
