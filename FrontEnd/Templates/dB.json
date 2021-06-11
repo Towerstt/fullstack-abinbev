@@ -1,0 +1,85 @@
+{
+    "users" : {
+        "id1" : {
+            "email" : "hugo@hugo.com",
+            "token" : "token",
+            "username" : "Hugo",
+            "bio" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis accusamus, labore ad recusandae assumenda ipsam nulla dolore similique atque fugit possimus mollitia a obcaecati hic, incidunt autem sequi. Atque officiis necessitatibus ex enim sequi dolore quas hic, delectus eius voluptatibus cum neque blanditiis nemo magnam corrupti velit quasi odio quod obcaecati, ratione veniam impedit, laudantium nihil libero. Soluta aliquam deleniti magnam odio praesentium officia, dolor nam. Maiores aspernatur culpa soluta accusantium sapiente non blanditiis eaque consequuntur temporibus dolores ipsa aut repellat fugit quam beatae, tenetur recusandae, facere cupiditate sequi doloremque excepturi ut quasi labore ipsum. Quo ducimus sequi corrupti doloremque.",
+            "image" : "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_960_720.png"
+        },
+        "id2" : {
+            "email" : "leo@hugo.com",
+            "token" : "token",
+            "username" : "Leo",
+            "bio" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis accusamus, labore ad recusandae assumenda ipsam nulla dolore similique atque fugit possimus mollitia a obcaecati hic, incidunt autem sequi. Atque officiis necessitatibus ex enim sequi dolore quas hic, delectus eius voluptatibus cum neque blanditiis nemo magnam corrupti velit quasi odio quod obcaecati, ratione veniam impedit, laudantium nihil libero. Soluta aliquam deleniti magnam odio praesentium officia, dolor nam. Maiores aspernatur culpa soluta accusantium sapiente non blanditiis eaque consequuntur temporibus dolores ipsa aut repellat fugit quam beatae, tenetur recusandae, facere cupiditate sequi doloremque excepturi ut quasi labore ipsum. Quo ducimus sequi corrupti doloremque.",
+            "image" : "https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_960_720.png"
+        },
+        "id3" : {
+            "email" : "sebastian@hugo.com",
+            "token" : "token",
+            "username" : "Sebastián",
+            "bio" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis accusamus, labore ad recusandae assumenda ipsam nulla dolore similique atque fugit possimus mollitia a obcaecati hic, incidunt autem sequi. Atque officiis necessitatibus ex enim sequi dolore quas hic, delectus eius voluptatibus cum neque blanditiis nemo magnam corrupti velit quasi odio quod obcaecati, ratione veniam impedit, laudantium nihil libero. Soluta aliquam deleniti magnam odio praesentium officia, dolor nam. Maiores aspernatur culpa soluta accusantium sapiente non blanditiis eaque consequuntur temporibus dolores ipsa aut repellat fugit quam beatae, tenetur recusandae, facere cupiditate sequi doloremque excepturi ut quasi labore ipsum. Quo ducimus sequi corrupti doloremque.",
+            "image" : "https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png"
+        },
+        "id4" : {
+            "email" : "adriana@hugo.com",
+            "token" : "token",
+            "username" : "Adriana",
+            "bio" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis accusamus, labore ad recusandae assumenda ipsam nulla dolore similique atque fugit possimus mollitia a obcaecati hic, incidunt autem sequi. Atque officiis necessitatibus ex enim sequi dolore quas hic, delectus eius voluptatibus cum neque blanditiis nemo magnam corrupti velit quasi odio quod obcaecati, ratione veniam impedit, laudantium nihil libero. Soluta aliquam deleniti magnam odio praesentium officia, dolor nam. Maiores aspernatur culpa soluta accusantium sapiente non blanditiis eaque consequuntur temporibus dolores ipsa aut repellat fugit quam beatae, tenetur recusandae, facere cupiditate sequi doloremque excepturi ut quasi labore ipsum. Quo ducimus sequi corrupti doloremque.",
+            "image" : "https://cdn.pixabay.com/photo/2014/04/03/10/32/user-310807_960_720.png"
+            }
+        },
+    "articles": {
+        "id1" : {
+                "slug": "how-to-train-your-dragon",
+                "title": "How to train your dragon",
+                "description": "Ever wonder how?",
+                "body": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim dolorem similique sequi nulla eaque? Cum eius sit at incidunt, ullam vitae deserunt reprehenderit officia culpa iste quia voluptatum dignissimos illum ut quo rerum ea adipisci minima nemo commodi! Ipsum temporibus corrupti praesentium dicta eius est et voluptatem assumenda, necessitatibus nemo totam doloremque! Hic quisquam, voluptates nemo provident repellat sunt ad, suscipit eum dignissimos distinctio sequi magni nostrum saepe unde assumenda labore non dolores voluptas atque perspiciatis, quibusdam explicabo aperiam ex natus. Quos fugit commodi nobis sunt sequi aut placeat alias eligendi, corporis officiis culpa ducimus, repudiandae impedit nisi magni. Culpa!",
+                "tagList": ["dragons", "training"],
+                "createdAt": "2016-02-18T03:22:56.637Z",
+                "updatedAt": "2016-02-18T03:48:35.824Z",
+                "favorited": false,
+                "favoritesCount": 0,
+                "author": "id1"
+            },
+        "id2" : {
+            "slug": "new-posting-test",
+            "title": "New posting test",
+            "description": "POST Method?",
+            "body": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim dolorem similique sequi nulla eaque? Cum eius sit at incidunt, ullam vitae deserunt reprehenderit officia culpa iste quia voluptatum dignissimos illum ut quo rerum ea adipisci minima nemo commodi! Ipsum temporibus corrupti praesentium dicta eius est et voluptatem assumenda, necessitatibus nemo totam doloremque! Hic quisquam, voluptates nemo provident repellat sunt ad, suscipit eum dignissimos distinctio sequi magni nostrum saepe unde assumenda labore non dolores voluptas atque perspiciatis, quibusdam explicabo aperiam ex natus. Quos fugit commodi nobis sunt sequi aut placeat alias eligendi, corporis officiis culpa ducimus, repudiandae impedit nisi magni. Culpa!",
+            "tagList": ["post", "testing", "article"],
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "updatedAt": "2016-02-18T03:48:35.824Z",
+            "favorited": false,
+            "favoritesCount": 0,
+            "author": "id2"    
+            },
+        "id3" : {
+            "slug": "last-post-for-testing",
+            "title": "Last post for testing",
+            "description": "Third post",
+            "body": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim dolorem similique sequi nulla eaque? Cum eius sit at incidunt, ullam vitae deserunt reprehenderit officia culpa iste quia voluptatum dignissimos illum ut quo rerum ea adipisci minima nemo commodi! Ipsum temporibus corrupti praesentium dicta eius est et voluptatem assumenda, necessitatibus nemo totam doloremque! Hic quisquam, voluptates nemo provident repellat sunt ad, suscipit eum dignissimos distinctio sequi magni nostrum saepe unde assumenda labore non dolores voluptas atque perspiciatis, quibusdam explicabo aperiam ex natus. Quos fugit commodi nobis sunt sequi aut placeat alias eligendi, corporis officiis culpa ducimus, repudiandae impedit nisi magni. Culpa!",
+            "tagList": ["last", "post", "dragons"],
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "updatedAt": "2016-02-18T03:48:35.824Z",
+            "favorited": false,
+            "favoritesCount": 0,
+            "author": "id2"
+            }
+        },
+    "comments" : {
+        "id1" : {
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "body": "It takes a Jacobian",
+            "author": "id3"
+        },
+        "id2" : {
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "body": "It takes a Jacobian",
+            "author": "id3"
+        }
+    }
+    
+}
