@@ -3,7 +3,7 @@ import LeftAside from "../Components/ArticlesList/LeftAside";
 import GeneralContainer from "../Components/ArticlesList/GeneralContainer";
 import RightAside from "../Components/ArticlesList/RightAside";
 
-const url = 'https://conduit.productionready.io/api'
+const url = "https://conduit.productionready.io/api";
 
 export default function ArticlesList(props) {
   const [tags, setTags] = useState({});
@@ -40,7 +40,9 @@ export default function ArticlesList(props) {
     <div className="container">
       <div className="row">
         <div className="col-2">
-          <LeftAside data={Object.keys(data).length ? Object.entries(data.articles) : []} />
+          <LeftAside
+            data={Object.keys(data).length ? Object.entries(data.articles) : []}
+          />
         </div>
         <div className="col-8">
           <GeneralContainer
@@ -48,7 +50,9 @@ export default function ArticlesList(props) {
           />
         </div>
         <div className="col-2">
-          <RightAside data={Object.keys(data).length ? Object.entries(data.articles) : []} />
+          <RightAside
+            data={Object.keys(data).length ? Object.entries(data.articles) : []}
+          />
         </div>
       </div>
     </div>

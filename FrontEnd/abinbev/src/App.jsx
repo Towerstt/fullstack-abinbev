@@ -4,47 +4,51 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from 'react-router-dom'
-import './Styles/App.css';
+} from "react-router-dom";
+import "./Styles/App.css";
 
-import Header from './Screens/Header'
-import ArticlesList from './Screens/ArticlesList'
-import Login from './Screens/Login'
-import Settings from './Screens/Settings'
-import CreateArticle from './Screens/CreateArticle'
-import Article from './Screens/Article'
-import Profile from './Screens/Profile'
-import Footer from './Screens/Footer'
+import Header from "./Screens/Header";
+import ArticlesList from "./Screens/ArticlesList";
+import Login from "./Screens/Login";
+import Settings from "./Screens/Settings";
+import CreateArticle from "./Screens/CreateArticle";
+import Article from "./Screens/Article";
+import Profile from "./Screens/Profile";
+import Footer from "./Screens/Footer";
+import Register from "./Screens/Settings";
 
 function App() {
   return (
     <Router>
-    <div className='app'>
-      <Header />
+      <div className="app">
+        <Header />
         <Switch>
-          <Route exact path='/'>
-            <ArticlesList/>
+          <Route exact path="/">
+            <ArticlesList />
           </Route>
-         <Route exact path={['/login', '/#/register']}>
+          <Route exact path={["/login", "register"]}>
             <Login />
           </Route>
-           {/* <Route exact path='/#/settings'>
+          <Route exact path="/settings">
             <Settings />
-          </Route> */}
-          <Route exact path={['/editor', '/editor/:slug']}>
+          </Route>
+          <Route exact path={["/editor", "/editor/:slug"]}>
             <CreateArticle />
           </Route>
-          <Route exact path='/articles/:slug'>
+          <Route exact path="/articles/:slug">
             <Article />
           </Route>
-          {/* <Route exact path={['/#/profile/:username', '/#/profile/:username/favorites']}>
+          <Route
+            exact
+            path={["/profiles/:username", "/#/profiles/:username/favorites"]}
+          >
             <Profile />
-          </Route>*/}
+          </Route>
         </Switch>
-      {/* <Footer />  */}
-    </div>
+        <Footer />
+      </div>
     </Router>
   );
 }
 
-export default App
+export default App;

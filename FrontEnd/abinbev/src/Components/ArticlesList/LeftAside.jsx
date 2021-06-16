@@ -5,11 +5,9 @@ export default function LeftAside(props) {
 
   const buildLeftAside = (el, index) => {
     return (
-
-          <a key={`la.${el[0]}`}href={`/articles?tag=${el}`}>
-            <p>{el}</p>
-          </a>
-
+      <a key={`la.${el[0]}`} href={`/articles?tag=${el}`}>
+        <p>{el}</p>
+      </a>
     );
   };
 
@@ -25,11 +23,11 @@ export default function LeftAside(props) {
   const leftAsideUi = tagArray.map(buildLeftAside);
 
   return (
-    <div class="card" >
-    <div class="card-body">
-      <h5 class="card-title mb-5">Most Common Tags</h5>
-    {leftAsideUi}
-    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-5">Most Common Tags</h5>
+        {leftAsideUi}
       </div>
-    );
+    </div>
+  );
 }
