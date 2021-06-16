@@ -25,15 +25,15 @@ function App() {
           <Route exact path='/'>
             <ArticlesList/>
           </Route>
-          {/* <Route exact path={['/#/login', '/#/register']}>
+         <Route exact path={['/login', '/#/register']}>
             <Login />
           </Route>
-          <Route exact path='/#/settings'>
+           {/* <Route exact path='/#/settings'>
             <Settings />
-          </Route>
-          <Route exact path={['/#/editor', '/#/editor/:slug']}>
-            <CreateArticle />
           </Route> */}
+          <Route exact path={['/editor', '/editor/:slug']}>
+            <CreateArticle />
+          </Route>
           <Route exact path='/articles/:slug'>
             <Article />
           </Route>

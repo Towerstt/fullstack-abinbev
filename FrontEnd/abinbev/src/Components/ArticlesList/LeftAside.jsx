@@ -6,7 +6,7 @@ export default function LeftAside(props) {
   const buildLeftAside = (el, index) => {
     return (
 
-          <a href={`/articles?tag=${el}`}>
+          <a key={`la.${el[0]}`}href={`/articles?tag=${el}`}>
             <p>{el}</p>
           </a>
 

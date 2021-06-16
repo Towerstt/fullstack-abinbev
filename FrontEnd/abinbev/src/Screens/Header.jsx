@@ -10,22 +10,22 @@ export default function Header() {
         <ul class="nav navbar-nav pull-xs-right flex-row mt-5">
           <li class="nav-item">
             {/* Add "active" class when you're on that page" */}
-            <a class="nav-link active" href="/#/">
+            <a class="nav-link active" href="/">
               Home
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#/editor">
+            <a class="nav-link" href="/editor/:slug">
               <i class="ion-compose"></i>&nbsp;New Post
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#/settings">
+            <a class="nav-link" href="/settings">
               <i class="ion-gear-a"></i>&nbsp;Settings
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#/login">
+            <a class="nav-link" href="/login">
               Sign up
             </a>
           </li>

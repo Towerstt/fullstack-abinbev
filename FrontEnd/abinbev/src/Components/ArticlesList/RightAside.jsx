@@ -4,8 +4,10 @@ export default function RightAside (props){
       const buildRightAside = (el, ind) =>{
         if (el[1].favoritesCount){
           return(
-            <a href={`/${el[1].slug}`}><p key={el[0]}>{el[1].title}</p>
-            <p className='text-muted'>{el[1].favoritesCount} likes</p></a>
+            <React.Fragment> 
+              <a key={`ra.${el[0]}`} href={`/${el[1].slug}`}><p className='my-0' style={{fontSize : "1.2rem" }}>{el[1].title}</p></a>
+            <p className='text-muted' style={{fontSize : ".8rem" }}>{el[1].favoritesCount} likes</p>
+            </React.Fragment>
           )
         }
     }
