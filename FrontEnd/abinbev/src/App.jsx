@@ -15,7 +15,6 @@ import CreateArticle from "./Screens/CreateArticle";
 import Article from "./Screens/Article";
 import Profile from "./Screens/Profile";
 import Footer from "./Screens/Footer";
-import Register from "./Screens/Settings";
 
 function App() {
   return (

@@ -15,7 +15,7 @@ export default function Header() {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/editor/:slug">
+            <a class="nav-link" href="/editor">
               <i class="ion-compose"></i>&nbsp;New Post
             </a>
           </li>

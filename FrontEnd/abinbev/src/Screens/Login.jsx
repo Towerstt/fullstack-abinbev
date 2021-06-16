@@ -19,8 +19,8 @@ export default function Login() {
         },
         body: newUser,
       });
-      await response.json();
-      const token = response.token;
+      const res = await response.json();
+      const token = res.user.token;
       localStorage.setItem("tkn", token);
       setTimeout(() => {
         history.push("/");

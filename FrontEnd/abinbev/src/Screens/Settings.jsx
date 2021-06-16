@@ -14,17 +14,20 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const newUser = JSON.stringify({ email, password, username, image, bio });
+      const newUser = {user: { email : email, password : password, username : username, image : image, bio : bio }};
       const response = await fetch(`${url}/users`, {
         method: "POST",
+        cors : true,
         headers: {
-          "Content-Type": "application : json",
+          "Content-Type": "application/json",
         },
-        body: newUser,
+        body: JSON.stringify(newUser),
       });
-      await response.json();
-      const token = response.token;
-      localStorage.setItem("tkn", token);
+      const res = await response.json();
+      console.log(res)
+      const token = res.user.token;
+      console.log(token)
+      localStorage.setItem("auth", token);
       setTimeout(() => {
         history.push("/");
       }, 1000);
@@ -108,3 +111,4 @@ export default function Login() {
     </form>
   );
 }
+

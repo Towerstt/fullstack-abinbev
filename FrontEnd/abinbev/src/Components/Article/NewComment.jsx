@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 export default function NewComment(props) {
   const history = useHistory();
 
-  const postNewComment = (event) => {};
+  const postNewComment = (event) => {
+
+    history.push('/')
+  };
 
   const defaultImage =
     "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";

@@ -8,6 +8,8 @@ export default function NewArticle(props) {
     ? props.data[0][1]
     : "";
 
+  
+
   const [artTitle, setTitle] = useState(title);
   const [artDescription, setDescription] = useState(description);
   const [artBody, setBody] = useState(body);
@@ -17,9 +19,12 @@ export default function NewArticle(props) {
 
   const postNewArticle = async (event) => {
     event.preventDefault();
+    if(!localStorage.getItem('auth')){
+      throw new Error ('You have to log in first')
+    }
     try {
       const newArticleSlug = artTitle.replace(/ /g, "-");
-      const newArticle = JSON.stringify({
+      const newArticle = {
         article: {
           title: artTitle,
           slug: newArticleSlug,
@@ -31,16 +36,14 @@ export default function NewArticle(props) {
           favorited: false,
           favoritesCount: 0,
         },
-      });
-      const response = await fetch(`${url}/articles.json`, {
+      };
+      const response = await fetch(`${url}/articles`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", auth: "token" },
-        body: newArticle,
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(newArticle),
       });
       await response.json();
-      setTimeout(() => {
-        history.push("/");
-      }, 1000);
+      history.push("/");
     } catch (error) {
       console.log(error);
     }

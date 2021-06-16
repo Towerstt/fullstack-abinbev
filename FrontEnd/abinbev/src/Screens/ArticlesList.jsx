@@ -23,11 +23,11 @@ export default function ArticlesList(props) {
       .then((json) => setData(json));
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`${url}/user`)
-  //     .then((response) => response.json)
-  //     .then((json) => setUser(json));
-  // }, []);
+  useEffect(() => {
+    fetch(`${url}/user`)
+      .then((response) => response.json())
+      .then((json) => setUser(json));
+  }, []);
 
   // useEffect(() => {
   //   fetch(`${url}/articles?favorited=${currentUser}`)
