@@ -4,29 +4,26 @@ import ArticleAuthor from '../Components/Article/ArticleAuthor'
 import NewComment from "../Components/Article/NewComment";
 import CommentPosted from "../Components/Article/CommentPosted";
 import ArticleBody from "../Components/Article/ArticleBody";
-const {
-  DB_PROTOCOL,
-  DB_USER,
-  DB_PASSWORD,
-  DB_HOST,
-  DB_NAME
-} = process.env
+import { useParams } from "react-router-dom";
 
-const url = `${DB_PROTOCOL}//${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
+
+const url = 'https://conduit.productionready.io/api'
+
 export default function Article() {
-
+  const {slug} = useParams()
+  console.log(slug)
   const [data, setData] = useState({})
   const [comment, setComment] = useState({})
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
-    fetch(`${url}/articles?slug=:slug`)
+    fetch(`${url}/articles/${slug}`)
       .then((response) => response.json())
       .then((json) => setData(json))
   },[])
 
   useEffect(() => {
-    fetch(`${url}/articles?slug=:slug/comments`)
+    fetch(`${url}/articles/${slug}/comments`)
       .then((response) => response.json())
       .then((json) => setComment(json))
   },[])
@@ -39,26 +36,26 @@ export default function Article() {
 
 
   return (
-    <div class="article-page">
-      <div class="banner">
-        <div class="container">
-          <ArticleHeader data={Object.keys(data).length ? data.article : []} />
+    <div className="article-page">
+      <div className="banner">
+        <div className="container">
+          <ArticleHeader data={Object.keys(data).length ? Object.entries(data) : []} />
         </div>
       </div>
 
-      <div class="container page">
-        <ArticleBody data={Object.keys(data).length ? data.article : []}/>
+      <div className="container page">
+        <ArticleBody data={Object.keys(data).length ? Object.entries(data) : []}/>
 
         <hr />
 
-        <div class="article-actions">
-          <ArticleAuthor data={Object.keys(data).length ? data.article.author : []}/>
+        <div className="article-actions">
+          <ArticleAuthor data={Object.keys(data).length ? Object.entries(data) : []}/>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12 col-md-8 offset-md-2">
-            <NewComment user={Object.keys(currentUser).length ? currentUser.user : []}/>
-            <CommentPosted data={Object.keys(comment).length ? comment.comments : []}/>
+        <div className="row">
+          <div className="col-xs-12 col-md-8 offset-md-2">
+            <NewComment user={Object.keys(currentUser).length ? currentUser : {}}/>
+            <CommentPosted data={Object.keys(comment).length ? comment : {}}/>
           </div>
         </div>
       </div>

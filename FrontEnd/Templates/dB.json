@@ -77,9 +77,38 @@
         "id2" : {
             "createdAt": "2016-02-18T03:22:56.637Z",
             "updatedAt": "2016-02-18T03:22:56.637Z",
-            "body": "It takes a Jacobian",
-            "author": "id3"
+            "body": "New Comment",
+            "author": "id2"
+        },
+        "id3" : {
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "body": "New Comment * 2",
+            "author": "id1"
         }
+    },
+    "profiles" : {
+        "id1" : {
+            "username": "jake",
+            "bio": "I work at statefarm",
+            "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+            "following": false
+        },
+        "id2" : {
+            "username": "jake2",
+            "bio": "I work at statefarm2",
+            "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+            "following": false
+        }
+    },
+    "tags" : {
+        "tags" : [
+            "react",
+            "dragons",
+            "articles",
+            "posts",
+            "users"
+        ]
     }
     
 }

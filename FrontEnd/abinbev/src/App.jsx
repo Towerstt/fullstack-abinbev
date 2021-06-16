@@ -3,7 +3,7 @@ import {
   // eslint-disable-next-line no-unused-vars
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'
 import './Styles/App.css';
 
@@ -18,14 +18,14 @@ import Footer from './Screens/Footer'
 
 function App() {
   return (
+    <Router>
     <div className='app'>
       <Header />
-      <Article />
-         {/* <Switch>
-          <Route exact path='/#/'>
+        <Switch>
+          <Route exact path='/'>
             <ArticlesList/>
           </Route>
-          <Route exact path={['/#/login', '/#/register']}>
+          {/* <Route exact path={['/#/login', '/#/register']}>
             <Login />
           </Route>
           <Route exact path='/#/settings'>
@@ -33,16 +33,17 @@ function App() {
           </Route>
           <Route exact path={['/#/editor', '/#/editor/:slug']}>
             <CreateArticle />
-          </Route>
-          <Route exact path='/#/article/:slug'>
+          </Route> */}
+          <Route exact path='/articles/:slug'>
             <Article />
           </Route>
-          <Route exact path={['/#/profile/:username', '/#/profile/:username/favorites']}>
+          {/* <Route exact path={['/#/profile/:username', '/#/profile/:username/favorites']}>
             <Profile />
-          </Route>
+          </Route>*/}
         </Switch>
-      <Footer /> */}
+      {/* <Footer />  */}
     </div>
+    </Router>
   );
 }
 

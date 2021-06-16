@@ -26,7 +26,7 @@ export default function CommentPosted(props) {
     )
   }
 
-  const commentsUi = props.map(buildComments)
+  const commentsUi = props.data.length ? props.map(buildComments) : (<div/>)
 
 
   return (
